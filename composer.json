@@ -1,0 +1,35 @@
+{
+  "name": "yuncms/yuncms-supervisor",
+  "description": "Supervisor manager module for YUNCMS",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "supervisor",
+    "supervisor-manager"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "AlexyAV",
+      "email": "avpretty@gmail.com"
+    },
+    {
+      "name": "XuTongle",
+      "email": "xutongle@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*",
+    "yiisoft/yii2-bootstrap": "~2.0",
+    "zendframework/zend-xmlrpc": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.1.*",
+    "mikey179/vfsStream": "~1"
+  },
+  "autoload": {
+    "psr-4": {
+      "yuncms\\supervisor\\": ""
+    }
+  }
+}
