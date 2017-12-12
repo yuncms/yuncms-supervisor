@@ -56,7 +56,7 @@ class Connection extends Component implements ConnectionInterface
     }
 
     /**
-     * @return XmlRpcClient
+     * @return \Zend\Http\Client
      */
     private function _initConnection()
     {
@@ -105,6 +105,12 @@ class Connection extends Component implements ConnectionInterface
         }
     }
 
+    /**
+     * @return int
+     * @throws AuthenticationException
+     * @throws ConnectionException
+     * @throws SupervisorException
+     */
     public function checkConnection()
     {
         return (int)$this->callMethod('supervisor.getAPIVersion');

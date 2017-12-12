@@ -2,13 +2,13 @@
 
 namespace yuncms\supervisor\controllers;
 
+use Yii;
 use yii\base\Event;
 use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\ContentNegotiator;
 use yii\helpers\Url;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yuncms\supervisor\components\filters\AjaxAccess;
 use yuncms\supervisor\components\supervisor\config\ConfigFileHandler;
@@ -67,6 +67,8 @@ class DefaultController extends Controller
      * Lists all Domain models.
      *
      * @return mixed
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yuncms\supervisor\components\supervisor\exceptions\ProcessException
      */
     public function actionIndex()
     {
@@ -139,18 +141,16 @@ class DefaultController extends Controller
 
     /**
      * @return array
-     * @throws NotFoundHttpException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionProcessControl()
     {
-        $request = \Yii::$app->request;
-
-        $actionType = $request->post('actionType');
+        $actionType = Yii::$app->request->post('actionType');
 
         $response = ['isSuccessful' => true];
 
         try {
-            $process = $this->_supervisorProcess($request->post('processName'));
+            $process = $this->_supervisorProcess(Yii::$app->request->post('processName'));
 
             if ($process->hasMethod($actionType)) {
                 $process->$actionType();
@@ -166,13 +166,11 @@ class DefaultController extends Controller
 
     /**
      * @return array
-     * @throws NotFoundHttpException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionSupervisorControl()
     {
-        $request = \Yii::$app->request;
-
-        $actionType = $request->post('actionType');
+        $actionType = Yii::$app->request->post('actionType');
 
         $response = ['isSuccessful' => true];
 
@@ -195,19 +193,17 @@ class DefaultController extends Controller
      * Responsible for the process control of the entire group.
      *
      * @return array
-     * @throws NotFoundHttpException
+     * @throws \yii\base\InvalidConfigException
      */
     public function actionGroupControl()
     {
-        $request = \Yii::$app->request;
-
-        $actionType = $request->post('actionType');
+        $actionType = Yii::$app->request->post('actionType');
 
         $response = ['isSuccessful' => true];
 
         try {
             $group = $this->_supervisorGroup(
-                $request->post('groupName')
+                Yii::$app->request->post('groupName')
             );
 
             if ($group->hasMethod($actionType)) {
@@ -224,15 +220,13 @@ class DefaultController extends Controller
 
     public function actionProcessConfigControl()
     {
-        $request = \Yii::$app->request;
-
-        $actionType = $request->post('actionType');
+        $actionType = Yii::$app->request->post('actionType');
 
         $response = ['isSuccessful' => true];
 
         try {
             $group = new ProcessConfig(
-                $request->post('groupName')
+                Yii::$app->request->post('groupName')
             );
 
             if ($group->hasMethod($actionType)) {
@@ -254,26 +248,25 @@ class DefaultController extends Controller
     /**
      * Get log or errors output of single supervisor process.
      *
-     * @return string
-     * @throws NotFoundHttpException
+     * @return array
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yuncms\supervisor\components\supervisor\exceptions\ProcessException
      */
     public function actionGetProcessLog()
     {
-        $request = \Yii::$app->request;
-
         $response = ['isSuccessful' => false];
 
         try {
             $processLog = $this->_supervisorProcess(
-                $request->post('processName')
-            )->getProcessOutput($request->post('logType'));
+                Yii::$app->request->post('processName')
+            )->getProcessOutput(Yii::$app->request->post('logType'));
 
             $response = [
                 'isSuccessful' => true,
                 'processLog' => $processLog ?: 'No logs'
             ];
         } catch (SupervisorException $error) {
-            $response = ['error' => $error->getMessage()];
+            $response['error'] = $error->getMessage();
         }
 
         return $response;
@@ -284,10 +277,8 @@ class DefaultController extends Controller
      */
     public function actionCountGroupProcesses()
     {
-        $request = \Yii::$app->request;
-
         $group = new ProcessConfig(
-            $request->post('groupName')
+            Yii::$app->request->post('groupName')
         );
 
         return [
@@ -303,7 +294,7 @@ class DefaultController extends Controller
      */
     private function _renderProcess($view, $data)
     {
-        if(\Yii::$app->request->getHeaders()->has('X-PJAX')) {
+        if(Yii::$app->request->isAjax) {
             return $this->renderAjax($view, $data);
         } else {
             return $this->render($view, $data);
@@ -326,7 +317,7 @@ class DefaultController extends Controller
      */
     private function _supervisorMainProcess()
     {
-        return \Yii::$container->get(MainProcess::className());
+        return Yii::$container->get(MainProcess::className());
     }
 
     /**
@@ -337,7 +328,7 @@ class DefaultController extends Controller
      */
     private function _supervisorProcess($processName)
     {
-        return \Yii::$container->get(Process::className(), [$processName]);
+        return Yii::$container->get(Process::className(), [$processName]);
     }
 
     /**
@@ -348,6 +339,6 @@ class DefaultController extends Controller
      */
     private function _supervisorGroup($groupName)
     {
-        return \Yii::$container->get(Group::className(), [$groupName]);
+        return Yii::$container->get(Group::className(), [$groupName]);
     }
 }

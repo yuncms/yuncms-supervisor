@@ -159,6 +159,8 @@ class ProcessConfig extends Component
      *
      * @param array $programName
      * @param array $config
+     * @throws ProcessConfigException
+     * @throws \Exception
      * @codeCoverageIgnore
      */
     public function __construct($programName, $config = [])

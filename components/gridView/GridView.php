@@ -18,6 +18,9 @@ class GridView extends \yii\grid\GridView
      */
     public $beforeItems = '';
 
+    /**
+     * @throws \yii\base\InvalidConfigException
+     */
     public function init()
     {
         parent::init();

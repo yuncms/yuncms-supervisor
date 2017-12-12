@@ -1,8 +1,8 @@
 <?php
 
-namespace supervisormanager\components\supervisor\config;
+namespace yuncms\supervisor\components\supervisor\config;
 
-use supervisormanager\components\supervisor\config\ConfigFileHandler;
+use yuncms\supervisor\components\supervisor\config\ConfigFileHandler;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\visitor\vfsStreamStructureVisitor;
 

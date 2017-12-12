@@ -89,10 +89,9 @@ class Process extends Supervisor
 
     /**
      * @param $processName
+     * @return int
      * @codeCoverageIgnore
      *
-     * @return int
-     * @throws ProcessException
      */
     public static function getProcessPriority($processName)
     {

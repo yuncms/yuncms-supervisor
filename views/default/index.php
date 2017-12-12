@@ -1,6 +1,6 @@
 <?php
 
-use supervisormanager\SupervisorAsset;
+use yuncms\supervisor\assets\SupervisorAsset;
 
 SupervisorAsset::register($this);
 

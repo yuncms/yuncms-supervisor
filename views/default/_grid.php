@@ -1,10 +1,11 @@
 <?php
 
 
-use supervisormanager\components\gridView\GridView;
-use supervisormanager\components\widgets\ProcessPriorityWidget;
+
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yuncms\supervisor\components\gridView\GridView;
+use yuncms\supervisor\components\widgets\ProcessPriorityWidget;
 
 echo GridView::widget(
     [

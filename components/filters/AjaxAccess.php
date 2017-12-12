@@ -29,7 +29,7 @@ class AjaxAccess extends ActionFilter
     /**
      * @param ActionEvent $event
      * @return boolean
-     * @throws MethodNotAllowedHttpException when the request method is not allowed.
+     * @throws ForbiddenHttpException
      */
     public function beforeAction($event)
     {
@@ -56,6 +56,9 @@ class AjaxAccess extends ActionFilter
         }
     }
 
+    /**
+     * @throws ForbiddenHttpException
+     */
     public function ajaxOnly()
     {
         if ($this->defaultUrl !== null) {

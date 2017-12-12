@@ -72,6 +72,7 @@ class MainProcess extends Supervisor
      * Sort all available processes by relative group.
      *
      * @return array
+     * @throws \yuncms\supervisor\components\supervisor\exceptions\ProcessException
      */
     public function getAllProcessesByGroup()
     {

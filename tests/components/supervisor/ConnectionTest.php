@@ -1,8 +1,8 @@
 <?php
 
-namespace supervisormanager\tests\components\supervisor;
+namespace yuncms\supervisor\tests\components\supervisor;
 
-use supervisormanager\components\supervisor\Connection;
+use yuncms\supervisor\components\supervisor\Connection;
 use Zend\Http\Client\Adapter\Exception\RuntimeException;
 use Zend\XmlRpc\Client;
 use Zend\XmlRpc\Client\Exception\FaultException;

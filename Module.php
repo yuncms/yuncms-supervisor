@@ -26,7 +26,7 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-
+        $this->registerTranslations();
         Event::on(Supervisor::className(), Supervisor::EVENT_CONFIG_CHANGED,
             function () {
                 exec('supervisorctl update', $output, $status);
@@ -57,5 +57,20 @@ class Module extends \yii\base\Module
             ConnectionInterface::class,
             $this->params['supervisorConnection']
         );
+    }
+
+    /**
+     * 注册语言包
+     * @return void
+     */
+    public function registerTranslations()
+    {
+        if (!isset(Yii::$app->i18n->translations['supervisor*'])) {
+            Yii::$app->i18n->translations['supervisor*'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'sourceLanguage' => 'en-US',
+                'basePath' => __DIR__ . '/messages',
+            ];
+        }
     }
 }

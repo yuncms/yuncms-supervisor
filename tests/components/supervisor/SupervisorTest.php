@@ -1,9 +1,9 @@
 <?php
 
-namespace supervisormanager\tests\components\supervisor;
+namespace yuncms\supervisor\tests\components\supervisor;
 
-use supervisormanager\components\supervisor\Connection;
-use supervisormanager\components\supervisor\Supervisor;
+use yuncms\supervisor\components\supervisor\Connection;
+use yuncms\supervisor\components\supervisor\Supervisor;
 
 class SupervisorTest extends \PHPUnit_Framework_TestCase
 {

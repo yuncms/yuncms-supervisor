@@ -5,7 +5,6 @@ namespace yuncms\supervisor\models;
 use yii\base\Model;
 use yuncms\supervisor\components\supervisor\config\ProcessConfig;
 
-
 class SupervisorGroupForm extends Model
 {
     /**
@@ -76,6 +75,9 @@ class SupervisorGroupForm extends Model
         ];
     }
 
+    /**
+     * @return bool
+     */
     public function saveGroup()
     {
         $processConfig = new ProcessConfig($this->groupName);

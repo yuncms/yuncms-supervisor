@@ -1,9 +1,9 @@
 <?php
 
-namespace supervisormanager\components\supervisor\control;
+namespace yuncms\supervisor\components\supervisor\control;
 
-use supervisormanager\components\supervisor\Connection;
-use supervisormanager\components\supervisor\control\Group;
+use yuncms\supervisor\components\supervisor\Connection;
+use yuncms\supervisor\components\supervisor\control\Group;
 
 class GroupTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace supervisormanager\components\supervisor\config;
+namespace yuncms\supervisor\components\supervisor\config;
 
-use supervisormanager\components\supervisor\config\ConfigFileHandler;
-use supervisormanager\components\supervisor\config\ProcessConfig;
+use yuncms\supervisor\components\supervisor\config\ConfigFileHandler;
+use yuncms\supervisor\components\supervisor\config\ProcessConfig;
 
 class ProcessConfigTest extends \PHPUnit_Framework_TestCase
 {
@@ -106,7 +106,7 @@ class ProcessConfigTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider termsValuesProvider
-     * @expectedException \supervisormanager\components\supervisor\exceptions\ProcessConfigException
+     * @expectedException \yuncms\supervisor\components\supervisor\exceptions\ProcessConfigException
      */
     public function testSetStopsignal($stopsignal)
     {
@@ -137,7 +137,8 @@ class ProcessConfigTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider autoRestartValuesProvider
-     * @expectedException \supervisormanager\components\supervisor\exceptions\ProcessConfigException
+     * @expectedException \yuncms\supervisor\components\supervisor\exceptions\ProcessConfigException
+     * @throws \yuncms\supervisor\components\supervisor\exceptions\ProcessConfigException
      */
     public function testSetAutorestart($autorestart)
     {
