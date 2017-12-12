@@ -40,7 +40,7 @@
         "sourceLanguage": "en-US",
         "basePath": "@yuncms/supervisor/messages"
       },
-      "cron": [
+      "tasks": [
         {
           "class": "aa",
           "event": "bbb",
