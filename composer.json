@@ -31,5 +31,30 @@
     "psr-4": {
       "yuncms\\supervisor\\": ""
     }
-  }
+  },
+  "extra": {
+    "yuncms": {
+      "name": "supervisor",
+      "i18n": {
+        "class": "yii\\i18n\\PhpMessageSource",
+        "sourceLanguage": "en-US",
+        "basePath": "@yuncms/supervisor/messages"
+      },
+      "cron": {
+      },
+      "migrationNamespace": "yuncms\\supervisor\\migrations",
+      "backend": {
+        "class": "yuncms\\supervisor\\Module"
+      }
+    },
+    "branch-alias": {
+      "dev-master": "2.0-dev"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
 }
