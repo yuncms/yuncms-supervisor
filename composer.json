@@ -35,7 +35,7 @@
   "extra": {
     "yuncms": {
       "id": "supervisor",
-      "i18n": {
+      "translate": {
         "class": "yii\\i18n\\PhpMessageSource",
         "sourceLanguage": "en-US",
         "basePath": "@yuncms/supervisor/messages"
