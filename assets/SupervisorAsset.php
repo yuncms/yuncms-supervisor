@@ -1,6 +1,6 @@
 <?php
 
-namespace supervisormanager;
+namespace yuncms\supervisor\assets;
 
 use yii\web\AssetBundle;
 
@@ -9,7 +9,7 @@ class SupervisorAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@supervisormanager/assets';
+    public $sourcePath = '@yuncms/supervisor/views/assets';
 
     /**
      * @inheritdoc

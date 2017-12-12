@@ -1,11 +1,12 @@
 <?php
 
-namespace supervisormanager;
+namespace yuncms\supervisor;
 
-use supervisormanager\components\supervisor\ConnectionInterface;
-use supervisormanager\components\supervisor\Supervisor;
+use Yii;
 use yii\base\Event;
 use Zend\XmlRpc\Client;
+use yuncms\supervisor\components\supervisor\ConnectionInterface;
+use yuncms\supervisor\components\supervisor\Supervisor;
 
 /**
  * @property array supervisorConnection
@@ -20,7 +21,7 @@ class Module extends \yii\base\Module
     /**
      * @var string
      */
-    public $controllerNamespace = 'supervisormanager\controllers';
+    public $controllerNamespace = 'yuncms\supervisor\controllers';
 
     public function init()
     {
@@ -32,7 +33,7 @@ class Module extends \yii\base\Module
             }
         );
 
-        \Yii::configure($this, require(__DIR__ . '/config.php'));
+        Yii::configure($this, require(__DIR__ . '/config.php'));
 
         $this->params['supervisorConnection'] = array_merge(
             $this->params['supervisorConnection'], $this->authData
@@ -43,7 +44,7 @@ class Module extends \yii\base\Module
 
     protected function registerIoC()
     {
-        \Yii::$container->set(
+        Yii::$container->set(
             Client::class,
             function () {
                 return new Client(
@@ -52,7 +53,7 @@ class Module extends \yii\base\Module
             }
         );
 
-        \Yii::$container->set(
+        Yii::$container->set(
             ConnectionInterface::class,
             $this->params['supervisorConnection']
         );
